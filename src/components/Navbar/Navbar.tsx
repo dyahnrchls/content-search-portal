@@ -2,70 +2,43 @@ import React from "react";
 import {
   Box,
   Flex,
-  Avatar,
-  Text,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
   Stack,
-  useColorMode,
-  Center,
   InputGroup,
   InputLeftElement,
   Input,
+  Image,
 } from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { Search2Icon } from "@chakra-ui/icons";
+import Logo from "../../assets/logo.png";
 
-interface Props {
-  children: React.ReactNode;
+export interface NavbarProps {
+  keyword: string;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const NavLink = (props: Props) => {
-  const { children } = props;
-
-  return (
-    <Box
-      as="a"
-      px={2}
-      py={1}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      href={"#"}
-    >
-      {children}
-    </Box>
-  );
-};
-
-const Navbar = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const Navbar = ({ keyword, setKeyword }: NavbarProps) => {
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box>Logo</Box>
+      <Box bg="black" px={4}>
+        <Flex h={16} alignItems={"center"}>
+          <Box>
+            <Image src={Logo} width={100} />
+          </Box>
 
-          <Flex alignItems={"center"}>
+          <Flex alignItems={"center"} width="100%" justify="center">
             <Stack direction={"row"} spacing={7}>
-              <Button onClick={toggleColorMode}>
-                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              </Button>
-
               <Stack spacing={4}>
                 <InputGroup>
                   <InputLeftElement pointerEvents="none">
-                    {/* <PhoneIcon color="gray.300" /> */}
+                    <Search2Icon color="gray.300" />
                   </InputLeftElement>
-                  <Input type="text" placeholder="Search.." />
+                  <Input
+                    type="text"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    placeholder="Search.."
+                    width="55vw"
+                  />
                 </InputGroup>
               </Stack>
             </Stack>

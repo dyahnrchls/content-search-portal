@@ -17,6 +17,10 @@ module.exports = {
         use: "babel-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.(ico|jpe?g|png|gif|eot|otf|webp|svg|ttf|woff|woff2)([\?]?.*)$/,
+        use: "file-loader",
+      },
     ],
   },
   devServer: {
