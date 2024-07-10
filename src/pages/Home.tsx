@@ -5,7 +5,10 @@ import Card from "../components/Card/Card";
 import { useHomeUtil } from "./Home.util";
 
 const Home: React.FC = () => {
-  const { content, loading, navbarProps } = useHomeUtil();
+  const { content, loading, error, navbarProps } = useHomeUtil();
+
+  if (loading && !content) return <Text>Loading...</Text>;
+  if (error) return <Text>Error: {error.message}</Text>;
 
   return (
     <Stack bgColor="black">
@@ -22,6 +25,7 @@ const Home: React.FC = () => {
           </Flex>
         </Flex>
       </Stack>
+      {loading && <Text>Loading more...</Text>}
     </Stack>
   );
 };

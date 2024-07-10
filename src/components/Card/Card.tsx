@@ -4,6 +4,7 @@ import {
   Card as CardComponent,
   CardFooter,
   Flex,
+  Icon,
   Image,
   Skeleton,
   Stack,
@@ -16,7 +17,7 @@ import { IoTimeOutline } from "react-icons/io5";
 
 export const Card = ({ data, loading }) => {
   return loading ? (
-    <CardComponent width={244} height={272}>
+    <CardComponent width={244} height={272} borderRadius={4}>
       <Stack>
         <Skeleton height={120} />
         <Stack padding={2}>
@@ -27,17 +28,18 @@ export const Card = ({ data, loading }) => {
       </Stack>
     </CardComponent>
   ) : (
-    <CardComponent width={244}>
+    <CardComponent width={244} borderRadius={4}>
       <Stack position="relative">
         <Flex
-          bgColor={"#FFF9F6"}
+          bgColor={"tigerOrange.50"}
           position="absolute"
           padding={2}
           borderTopLeftRadius={4}
           borderBottomRightRadius={4}
           gap={1}
+          alignItems="center"
         >
-          <RiProgress3Line color="#FFA97A" />
+          <Icon as={RiProgress3Line} color="tigerOrange.400" />
           <Text color="black" fontSize={12} as="b">
             30% Completed
           </Text>
@@ -61,7 +63,7 @@ export const Card = ({ data, loading }) => {
           alignItems="center"
         >
           <Flex
-            bgColor="#FF5900"
+            bg="tigerOrange.600"
             borderRadius={100}
             padding={1}
             alignItems="center"
@@ -98,9 +100,9 @@ export const Card = ({ data, loading }) => {
           </Text>
         </Stack>
       </CardBody>
-      <CardFooter bgColor="white" justify="flex-end" flexWrap="wrap" gap={3}>
-        <CiShare2 size={24} color="#FF5900" />
-        <CiBookmark size={24} color="#FF5900" />
+      <CardFooter borderBottomRadius={4} bgColor="white" justify="flex-end" flexWrap="wrap" gap={3}>
+        <Icon as={CiShare2} size={24} color="tigerOrange.600" />
+        <Icon as={CiBookmark} size={24} color="tigerOrange.600" />
       </CardFooter>
     </CardComponent>
   );

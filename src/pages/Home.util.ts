@@ -2,11 +2,14 @@ import { useQuery } from "@apollo/client";
 import { useMemo, useState } from "react";
 import { GET_CONTENT } from "../graphql/queries";
 import { NavbarProps } from "../components/Navbar/Navbar";
+import { useDebounce } from "../hooks/debounce.util";
 
 export const useHomeUtil = () => {
   const [keywords, setKeywords] = useState("");
+  const debouncedKeyword = useDebounce(keywords, 300);
+
   const { loading, error, data } = useQuery(GET_CONTENT, {
-    variables: { keywords },
+    variables: { keywords: debouncedKeyword },
   });
 
   const content = useMemo(() => {
@@ -21,6 +24,7 @@ export const useHomeUtil = () => {
   return {
     content,
     loading,
+    error,
     navbarProps,
   };
 };

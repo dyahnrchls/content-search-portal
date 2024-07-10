@@ -33,6 +33,7 @@ const Navbar = ({ keyword, setKeyword }: NavbarProps) => {
                     <Search2Icon color="gray.300" />
                   </InputLeftElement>
                   <Input
+                    bgColor="gray.900"
                     type="text"
                     value={keyword}
                     onChange={(e) => setKeyword(e.target.value)}
