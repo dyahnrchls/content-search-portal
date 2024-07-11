@@ -19,8 +19,8 @@ const Home: React.FC = () => {
         </Text>
         <Flex padding={5} justifyContent="center">
           <Flex flexWrap="wrap" gap={6} justifyContent="center">
-            {content?.map((item) => (
-              <Card key={item} data={item} loading={loading} />
+            {content?.map((item, index) => (
+              <Card key={index} data={item} loading={loading} />
             ))}
           </Flex>
         </Flex>

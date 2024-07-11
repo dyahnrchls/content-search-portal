@@ -14,8 +14,14 @@ import { CiBookmark, CiShare2 } from "react-icons/ci";
 import { RiProgress3Line } from "react-icons/ri";
 import { IoMdHeadset } from "react-icons/io";
 import { IoTimeOutline } from "react-icons/io5";
+import { Content } from "../../types/content.types";
 
-export const Card = ({ data, loading }) => {
+export interface CardProps {
+  data: Content;
+  loading: boolean;
+}
+
+export const Card = ({ data, loading }: CardProps) => {
   return loading ? (
     <CardComponent width={244} height={272} borderRadius={4}>
       <Stack>
@@ -100,7 +106,13 @@ export const Card = ({ data, loading }) => {
           </Text>
         </Stack>
       </CardBody>
-      <CardFooter borderBottomRadius={4} bgColor="white" justify="flex-end" flexWrap="wrap" gap={3}>
+      <CardFooter
+        borderBottomRadius={4}
+        bgColor="white"
+        justify="flex-end"
+        flexWrap="wrap"
+        gap={3}
+      >
         <Icon as={CiShare2} size={24} color="tigerOrange.600" />
         <Icon as={CiBookmark} size={24} color="tigerOrange.600" />
       </CardFooter>

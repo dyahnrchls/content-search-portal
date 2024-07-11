@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { GET_CONTENT } from "../graphql/queries";
 import { NavbarProps } from "../components/Navbar/Navbar";
 import { useDebounce } from "../hooks/debounce.util";
+import { Content } from "../types/content.types";
 
 export const useHomeUtil = () => {
   const [keywords, setKeywords] = useState("");
@@ -12,7 +13,7 @@ export const useHomeUtil = () => {
     variables: { keywords: debouncedKeyword },
   });
 
-  const content = useMemo(() => {
+  const content: Content[] = useMemo(() => {
     return loading ? Array(10).fill({}) : data?.contentCards?.edges;
   }, [data?.contentCards?.edges, loading]);
 
